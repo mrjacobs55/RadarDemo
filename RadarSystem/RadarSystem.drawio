@@ -1,11 +1,47 @@
-<mxfile host="app.diagrams.net" modified="2023-01-25T19:08:41.947Z" agent="5.0 (X11)" etag="Z6QNQdLriqAw-YQtbeL1" version="20.8.11" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-25T19:14:59.783Z" agent="5.0 (X11)" etag="nCx7SREn7FOhS_eh76rV" version="20.8.11" type="github">
   <diagram name="Page-1" id="mNSzjiiTRMsE0uHX-NC6">
     <mxGraphModel dx="2044" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DRPleiQ7j9Am4v-qD-1L-1" target="DRPleiQ7j9Am4v-qD-1L-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="DRPleiQ7j9Am4v-qD-1L-1" value="&lt;div&gt;Init&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;" vertex="1" parent="1">
           <mxGeometry x="-90" y="60" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="DRPleiQ7j9Am4v-qD-1L-2" target="DRPleiQ7j9Am4v-qD-1L-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-2" value="Generate/Select then Transmit Pulse" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-95" y="230" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="DRPleiQ7j9Am4v-qD-1L-10" target="DRPleiQ7j9Am4v-qD-1L-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-17" value="Response Detected" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DRPleiQ7j9Am4v-qD-1L-14">
+          <mxGeometry x="-0.184" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="DRPleiQ7j9Am4v-qD-1L-10" target="DRPleiQ7j9Am4v-qD-1L-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-160" y="480" />
+              <mxPoint x="-160" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-16" value="&lt;div&gt;Timeout&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="DRPleiQ7j9Am4v-qD-1L-15">
+          <mxGeometry x="-0.2727" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-10" value="&lt;div&gt;Wait for RX&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="-95" y="430" width="110" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="DRPleiQ7j9Am4v-qD-1L-13" value="Process Received Pulse in separate thread" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="140" y="430" width="110" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
