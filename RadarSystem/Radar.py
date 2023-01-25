@@ -57,7 +57,7 @@ usrp.send_waveform(p, duration, fc, samp_rate, [0], gain)
 
 binLen = 50
 shaped = np.reshape(p, (binLen, int(len(p)/binLen) ))
-ffts = np.abs((np.fft.fft(shaped, axis=1)))
+ffts = np.abs(np.fft.fftshift(np.fft.fft(shaped, axis=1),axes=1))
 
 f = np.fft.fftshift(np.fft.fftfreq(int(len(p)/binLen), 1/samp_rate))
 t = np.arange(0, len(p)/samp_rate, len(p)/samp_rate/binLen)
