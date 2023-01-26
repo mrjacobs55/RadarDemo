@@ -25,14 +25,14 @@ from PyQt5 import Qt
 from gnuradio import qtgui
 from gnuradio.filter import firdes
 import sip
+from gnuradio import blocks
+import pmt
 from gnuradio import gr
 import sys
 import signal
 from argparse import ArgumentParser
 from gnuradio.eng_arg import eng_float, intx
 from gnuradio import eng_notation
-from gnuradio import uhd
-import time
 from gnuradio import qtgui
 
 class SimpleTarget(gr.top_block, Qt.QWidget):
@@ -72,27 +72,11 @@ class SimpleTarget(gr.top_block, Qt.QWidget):
         # Variables
         ##################################################
         self.samp_rate = samp_rate = 1e6
-        self.f0 = f0 = 915e6
+        self.f0 = f0 = 1.9e9
 
         ##################################################
         # Blocks
         ##################################################
-        self.uhd_usrp_source_0_0 = uhd.usrp_source(
-            ",".join(('serial=E4R22N4UP', "")),
-            uhd.stream_args(
-                cpu_format="fc32",
-                args='',
-                channels=list(range(0,1)),
-            ),
-        )
-        self.uhd_usrp_source_0_0.set_center_freq(f0, 0)
-        self.uhd_usrp_source_0_0.set_rx_agc(False, 0)
-        self.uhd_usrp_source_0_0.set_gain(0, 0)
-        self.uhd_usrp_source_0_0.set_antenna('RX2', 0)
-        self.uhd_usrp_source_0_0.set_bandwidth(samp_rate, 0)
-        self.uhd_usrp_source_0_0.set_samp_rate(samp_rate)
-        # No synchronization enforced.
-        self.uhd_usrp_source_0_0.set_block_alias("uhd_rx")
         self.qtgui_waterfall_sink_x_0 = qtgui.waterfall_sink_c(
             256, #size
             firdes.WIN_BLACKMAN_hARRIS, #wintype
@@ -122,17 +106,19 @@ class SimpleTarget(gr.top_block, Qt.QWidget):
             self.qtgui_waterfall_sink_x_0.set_color_map(i, colors[i])
             self.qtgui_waterfall_sink_x_0.set_line_alpha(i, alphas[i])
 
-        self.qtgui_waterfall_sink_x_0.set_intensity_range(-140, 10)
+        self.qtgui_waterfall_sink_x_0.set_intensity_range(-80, 10)
 
         self._qtgui_waterfall_sink_x_0_win = sip.wrapinstance(self.qtgui_waterfall_sink_x_0.pyqwidget(), Qt.QWidget)
         self.top_grid_layout.addWidget(self._qtgui_waterfall_sink_x_0_win)
+        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/sdr/Desktop/tmp.iq', False, 0, 0)
+        self.blocks_file_source_0.set_begin_tag(pmt.PMT_NIL)
 
 
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.uhd_usrp_source_0_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
+        self.connect((self.blocks_file_source_0, 0), (self.qtgui_waterfall_sink_x_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "SimpleTarget")
@@ -145,15 +131,12 @@ class SimpleTarget(gr.top_block, Qt.QWidget):
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
         self.qtgui_waterfall_sink_x_0.set_frequency_range(0, self.samp_rate)
-        self.uhd_usrp_source_0_0.set_samp_rate(self.samp_rate)
-        self.uhd_usrp_source_0_0.set_bandwidth(self.samp_rate, 0)
 
     def get_f0(self):
         return self.f0
 
     def set_f0(self, f0):
         self.f0 = f0
-        self.uhd_usrp_source_0_0.set_center_freq(self.f0, 0)
 
 
 

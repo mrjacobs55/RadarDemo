@@ -4,13 +4,15 @@ import numpy as np
 import scipy.constants as sc
 import scipy.signal as sig
 import matplotlib.pyplot as plt
+import time
 
-samp_rate = 1e6  #hz
+
+samp_rate = 2e6  #hz
 prf = 100 #Hz
-duty_factor = 1.5 #.05
-β = 300e3; #Pulse Bandwidth
+duty_factor = 0.15 #.05
+β = 400e3; #Pulse Bandwidth
 repetitions = 128
-fc = 915e6; #Hz
+fc = 1.9e9; #Hz
 
 tau = duty_factor * (1/prf) # Length of transmit time in seconds
 lam = (1/fc) * sc.speed_of_light
@@ -47,7 +49,7 @@ def single_pulse(samp_rate, prf, tau, β, target_pow = 0, envelope_type="Rectang
     
     
     
-t, p = single_pulse(samp_rate, prf, tau, β, pulse_type="NLFM", envelope_type="HalfSin") #, envelope_type="HalfSin")            
+t, p = single_pulse(samp_rate, prf, tau, β, pulse_type="Decreasing", envelope_type="HalfSin") #, envelope_type="HalfSin")            
     
     
 
@@ -62,10 +64,11 @@ usrp.set_tx_antenna("TX/RX")
 
 print(duration)
 
-#while(True):
-usrp.send_waveform(p, duration, fc, samp_rate, [0], gain)
+# while(True):
+#     usrp.send_waveform(p, duration, fc, samp_rate, [0], gain)
+#     time.sleep(0.030)
 
-binLen = 50
+binLen = 25
 shaped = np.reshape(p, (binLen, int(len(p)/binLen) ))
 ffts = np.abs(np.fft.fftshift(np.fft.fft(shaped, axis=1),axes=1))
 
