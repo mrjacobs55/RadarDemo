@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 samp_rate = 1e6  #hz
 prf = 100 #Hz
 duty_factor = 1.5 #.05
-β = 500e3; #Pulse Bandwidth
+β = 300e3; #Pulse Bandwidth
 repetitions = 128
 fc = 915e6; #Hz
 
@@ -27,7 +27,17 @@ def single_pulse(samp_rate, prf, tau, β, target_pow = 0, envelope_type="Rectang
         return  
     
     if pulse_type == "Increasing": pulse = a * np.exp(1j*np.pi*(β/tau)*np.power(t,2))
-    #elif pulse_type == "Decreasing": pulse = a * np.exp(1j*np.pi*(β/tau)*(np.power(t,2) - 2*tau*t))    
+    elif pulse_type == "Decreasing": pulse = a * np.exp(-1j*np.pi*(β/tau)*(np.power(t,2) - 2*tau*t))    
+    elif pulse_type == "NLFM": 
+        base = 1.5
+        t1 = np.arange(0, tau, 1/(samp_rate * 4))
+        lfm = np.exp(1j*np.pi*(β/tau)*np.power(t1,2))
+        idx = np.power(np.linspace(0,np.power(len(t1), 1/base)-1,num=len(t)), base).astype(int)
+        #np.rint(np.logspace(0, np.log(len(t))/np.log(base), num=len(t), base=base)).astype(int)
+        pulse = a * lfm[idx]
+        # plt.clf()
+        # plt.plot(idx)
+        # plt.savefig("idx.png")
     else:
         LookupError("Pulse type not found")
         
@@ -37,7 +47,7 @@ def single_pulse(samp_rate, prf, tau, β, target_pow = 0, envelope_type="Rectang
     
     
     
-t, p = single_pulse(samp_rate, prf, tau, β, pulse_type="Increasing", envelope_type="HalfSin") #, envelope_type="HalfSin")            
+t, p = single_pulse(samp_rate, prf, tau, β, pulse_type="NLFM", envelope_type="HalfSin") #, envelope_type="HalfSin")            
     
     
 
@@ -61,6 +71,8 @@ ffts = np.abs(np.fft.fftshift(np.fft.fft(shaped, axis=1),axes=1))
 
 f = np.fft.fftshift(np.fft.fftfreq(int(len(p)/binLen), 1/samp_rate))
 t = np.arange(0, len(p)/samp_rate, len(p)/samp_rate/binLen)
+
+plt.clf()
 plt.pcolormesh(f, t, ffts, shading="gouraud")
 plt.title("Spectrogram")
 plt.xlabel('Frequency [Hz]')
