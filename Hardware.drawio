@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-01-30T20:05:47.174Z" agent="5.0 (X11)" etag="CDI8_w-fX5DgAsl_EFZS" version="20.8.12" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-01-30T20:07:58.730Z" agent="5.0 (X11)" etag="3flJSiLTXTpRxK1SBtvr" version="20.8.12" type="github" pages="2">
   <diagram name="Simplest" id="jR1B1zvRSLlZScaUMeme">
-    <mxGraphModel dx="1194" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2044" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -69,18 +69,35 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="xrBOXHBS8x_w-gcYqU6h-3" value="Python Radar Simulation" style="swimlane;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=9;fillColor=none;" vertex="1" parent="1">
-          <mxGeometry x="260" width="200" height="230" as="geometry">
+          <mxGeometry x="260" width="200" height="140" as="geometry">
             <mxRectangle x="260" width="150" height="23" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="xrBOXHBS8x_w-gcYqU6h-4" value="Radar System" style="swimlane;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=9;fillColor=none;" vertex="1" parent="xrBOXHBS8x_w-gcYqU6h-3">
-          <mxGeometry y="30" width="100" height="200" as="geometry">
+        <mxCell id="xrBOXHBS8x_w-gcYqU6h-4" value="Radar System" style="swimlane;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=9;fillColor=none;startSize=200;" vertex="1" parent="xrBOXHBS8x_w-gcYqU6h-3">
+          <mxGeometry y="30" width="100" height="110" as="geometry">
             <mxRectangle x="260" width="150" height="23" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="xrBOXHBS8x_w-gcYqU6h-6" value="Target Emulator" style="swimlane;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=9;fillColor=none;" vertex="1" parent="xrBOXHBS8x_w-gcYqU6h-3">
-          <mxGeometry x="100" y="30" width="100" height="200" as="geometry">
+        <mxCell id="xrBOXHBS8x_w-gcYqU6h-6" value="Target Emulator" style="swimlane;whiteSpace=wrap;html=1;strokeWidth=1;fontSize=9;fillColor=none;startSize=200;" vertex="1" parent="xrBOXHBS8x_w-gcYqU6h-3">
+          <mxGeometry x="100" y="30" width="100" height="110" as="geometry">
             <mxRectangle x="260" width="150" height="23" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xrBOXHBS8x_w-gcYqU6h-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="xrBOXHBS8x_w-gcYqU6h-6" target="k5j3q9gvalSJudkTdpyh-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xrBOXHBS8x_w-gcYqU6h-14" value="Shared 1G Ethernet Link" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;" vertex="1" connectable="0" parent="xrBOXHBS8x_w-gcYqU6h-10">
+          <mxGeometry x="-0.0702" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xrBOXHBS8x_w-gcYqU6h-12" value="Shared 1G Ethernet Link" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="xrBOXHBS8x_w-gcYqU6h-4" target="k5j3q9gvalSJudkTdpyh-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="360" y="195" />
+              <mxPoint x="-20" y="195" />
+              <mxPoint x="-20" y="300" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
