@@ -38,8 +38,8 @@ def rx(num_samps):
     return samples
 
 
-def plot_spectrogram(samples, num_samps, samp_rate, center_freq):
-    binLen = 128
+def plot_spectrogram(samples, num_samps, samp_rate, center_freq, binLen = 128):
+    
     shaped = np.reshape(samples, (binLen, int(num_samps/binLen)) )
     ffts = np.abs(np.fft.fftshift(np.fft.fft(shaped, axis=1),axes=1))
 
@@ -55,13 +55,13 @@ def plot_spectrogram(samples, num_samps, samp_rate, center_freq):
     plt.show()
 
 
-
-num_samps = 2**11 #2**12 #4096 # number of samples received
+oversamp = 5
+num_samps = oversamp * (2**11) #2**12 #4096 # number of samples received
 center_freq = 1900e6 # Hz
-samp_rate = 2e6 # Hz
+samp_rate = oversamp * 2e6 # Hz
 gain = 31.5 # dB
 duration = num_samps/samp_rate # seconds
-buffer_size = 1024
+buffer_size = 1024 * oversamp
 
 usrp = uhd.usrp.MultiUSRP("serial=E4R22N4UP")
 usrp.set_rx_antenna("RX2")
@@ -70,6 +70,8 @@ usrp.set_tx_antenna("TX/RX")
 usrp.set_rx_rate(samp_rate, 0)
 usrp.set_rx_freq(uhd.libpyuhd.types.tune_request(center_freq), 0)
 usrp.set_rx_gain(gain, 0)
+usrp.set_rx_dc_offset(True)
+usrp.set_rx_bandwidth(samp_rate, 0)
 # Set up the stream and receive buffer
 st_args = uhd.usrp.StreamArgs("fc32", "sc16")
 st_args.channels = [0]
@@ -84,7 +86,7 @@ streamer.issue_stream_cmd(stream_cmd)
 signal.signal(signal.SIGINT, exit_gracefully)
 
 #pow = []
-signal_max_len = 8192
+signal_max_len = 8192 * oversamp
 signal_exists = 0
 sig_buffer = np.zeros((signal_max_len), dtype=np.complex64)
 
@@ -102,20 +104,13 @@ while(True):
             plt.clf()
             plt.plot(np.abs(sig_buffer[0:signal_exists]))
             plt.show()
-        signal_exists = 0
-        
-
-
-
-    #    print("Signal Detected")
-    #    plt.clf()
-    #    plt.plot(np.abs(recv_buffer[0]))
-    #    plt.show()
-    # pow.append(max(np.abs(recv_buffer[0])))
-    # #samples = rx(num_samps)
-    # #pow.append(10*np.log10(np.mean(np.abs(samples)**2)))
+            plot_spectrogram(sig_buffer[0:signal_exists], signal_exists, samp_rate, center_freq, binLen=32)
+        signal_exists = 0    
+    #pow.append(max(np.abs(recv_buffer[0])))
+    # samples = rx(num_samps)
+    # pow.append(10*np.log10(np.mean(np.abs(samples)**2)))
     # #plot_spectrogram(samples, num_samps, samp_rate, center_freq)
-    # if(len(pow) % 100 == 0):
+    # if(len(pow) % 500 == 0):
     #    plt.clf()
     #    plt.plot(pow)
     #    plt.show()

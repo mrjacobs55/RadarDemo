@@ -10,9 +10,9 @@ import time
 samp_rate = 2e6  #hz
 prf = 100 #Hz
 duty_factor = 0.15 #.05
-β = 400e3; #Pulse Bandwidth
+β = 1e6 #400e3; #Pulse Bandwidth
 repetitions = 128
-fc = 1.9e9; #Hz
+fc = 1.900e9; #Hz
 
 tau = duty_factor * (1/prf) # Length of transmit time in seconds
 lam = (1/fc) * sc.speed_of_light
@@ -49,24 +49,33 @@ def single_pulse(samp_rate, prf, tau, β, target_pow = 0, envelope_type="Rectang
     
     
     
-t, p = single_pulse(samp_rate, prf, tau, β, pulse_type="Decreasing", envelope_type="HalfSin") #, envelope_type="HalfSin")            
+t, p = single_pulse(samp_rate, prf, tau, β, pulse_type="Increasing", envelope_type="Rectangular") #, envelope_type="HalfSin")            
     
     
 
 
 num_samps = len(p) # number of samples received
-gain = 31.5 # dB
+gain = 31# dB
 duration = num_samps/samp_rate # seconds
 
 usrp = uhd.usrp.MultiUSRP("serial=E2R22N0UP")
 usrp.set_rx_antenna("RX2")
 usrp.set_tx_antenna("TX/RX")
+usrp.set_tx_bandwidth(samp_rate, 0)
+
+# usrp.set_tx_rate(samp_rate)
+# usrp.set_tx_freq(uhd.libpyuhd.types.tune_request(fc),0)
+# usrp.set_tx_gain(gain,0)
+# usrp.set_tx_dc_offset(True, 0)
+
+# st_args = uhd.usrp.StreamArgs("fc32", "sc16")
+# st_args.channels = [0]
+# metadata = uhd.types.TXMetadata()
+# streamer = usrp.get_tx_stream(st_args)
+
+
 
 print(duration)
-
-# while(True):
-#     usrp.send_waveform(p, duration, fc, samp_rate, [0], gain)
-#     time.sleep(0.030)
 
 binLen = 25
 shaped = np.reshape(p, (binLen, int(len(p)/binLen) ))
@@ -92,6 +101,8 @@ plt.title("FFT of Pulse")
 plt.plot(np.abs(np.fft.fftshift(np.fft.fft(p[0:int(len(p))]))))
 plt.savefig("FFT.png")
 
-
+usrp.set_tx_dc_offset(True, 0)
+usrp.send_waveform(p, duration, fc, samp_rate, [0], gain)
+# streamer.send(p, metadata)
 
 
