@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-01-30T20:03:32.114Z" agent="5.0 (X11)" etag="9gbrJCoh-h5UswlKSm6L" version="20.8.12" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-01-30T20:04:09.590Z" agent="5.0 (X11)" etag="Mi6JR9h2X9OISOf-5JAK" version="20.8.12" type="github" pages="2">
   <diagram name="Simplest" id="jR1B1zvRSLlZScaUMeme">
-    <mxGraphModel dx="1194" dy="748" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1194" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -43,11 +43,21 @@
         <mxCell id="k5j3q9gvalSJudkTdpyh-25" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="k5j3q9gvalSJudkTdpyh-18" target="k5j3q9gvalSJudkTdpyh-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="xrBOXHBS8x_w-gcYqU6h-2" value="SMA Cable" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;" vertex="1" connectable="0" parent="k5j3q9gvalSJudkTdpyh-25">
+          <mxGeometry x="0.1883" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="k5j3q9gvalSJudkTdpyh-18" value="- 30 dB " style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=1;fontSize=9;fillColor=none;rotation=0;html=1;direction=south;" vertex="1" parent="1">
           <mxGeometry x="150" y="260" width="90" height="30" as="geometry" />
         </mxCell>
         <mxCell id="k5j3q9gvalSJudkTdpyh-23" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="k5j3q9gvalSJudkTdpyh-19" target="k5j3q9gvalSJudkTdpyh-6">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xrBOXHBS8x_w-gcYqU6h-1" value="SMA Cable" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;" vertex="1" connectable="0" parent="k5j3q9gvalSJudkTdpyh-23">
+          <mxGeometry x="-0.4141" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="k5j3q9gvalSJudkTdpyh-19" value="- 30 dB " style="shape=cylinder3;whiteSpace=wrap;boundedLbl=1;backgroundOutline=1;size=15;strokeWidth=1;fontSize=9;fillColor=none;rotation=0;html=1;direction=north;" vertex="1" parent="1">
           <mxGeometry x="490" y="260" width="90" height="30" as="geometry" />
