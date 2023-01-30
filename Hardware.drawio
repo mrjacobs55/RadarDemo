@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-30T20:09:36.402Z" agent="5.0 (X11)" etag="bp2ZzQCGN582852ZokdI" version="20.8.12" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2023-01-30T20:10:49.081Z" agent="5.0 (X11)" etag="xB-nwq3skVgLOeymmYaD" version="20.8.12" type="github" pages="2">
   <diagram name="Simplest" id="jR1B1zvRSLlZScaUMeme">
     <mxGraphModel dx="2044" dy="792" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
@@ -84,7 +84,14 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="xrBOXHBS8x_w-gcYqU6h-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="xrBOXHBS8x_w-gcYqU6h-6" target="k5j3q9gvalSJudkTdpyh-17">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="140" />
+              <mxPoint x="350" y="195" />
+              <mxPoint x="750" y="195" />
+              <mxPoint x="750" y="300" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="xrBOXHBS8x_w-gcYqU6h-14" value="Shared 1G Ethernet Link" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;" vertex="1" connectable="0" parent="xrBOXHBS8x_w-gcYqU6h-10">
           <mxGeometry x="-0.0702" y="4" relative="1" as="geometry">
@@ -94,10 +101,39 @@
         <mxCell id="xrBOXHBS8x_w-gcYqU6h-12" value="Shared 1G Ethernet Link" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="xrBOXHBS8x_w-gcYqU6h-4" target="k5j3q9gvalSJudkTdpyh-3">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="360" y="195" />
+              <mxPoint x="370" y="140" />
+              <mxPoint x="370" y="195" />
               <mxPoint x="-20" y="195" />
               <mxPoint x="-20" y="300" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pqVQ76lQFD72yK0xvEw3-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="k5j3q9gvalSJudkTdpyh-3" target="xrBOXHBS8x_w-gcYqU6h-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-30" y="325" />
+              <mxPoint x="-30" y="180" />
+              <mxPoint x="335" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pqVQ76lQFD72yK0xvEw3-3" value="Shared 1G Ethernet Link" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;" vertex="1" connectable="0" parent="pqVQ76lQFD72yK0xvEw3-1">
+          <mxGeometry x="0.2897" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pqVQ76lQFD72yK0xvEw3-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;fontSize=9;" edge="1" parent="1" source="k5j3q9gvalSJudkTdpyh-17" target="xrBOXHBS8x_w-gcYqU6h-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="325" />
+              <mxPoint x="770" y="180" />
+              <mxPoint x="385" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pqVQ76lQFD72yK0xvEw3-4" value="Shared 1G Ethernet Link" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=9;" vertex="1" connectable="0" parent="pqVQ76lQFD72yK0xvEw3-2">
+          <mxGeometry x="0.3443" y="-4" relative="1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
