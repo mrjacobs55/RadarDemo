@@ -61,9 +61,9 @@ center_freq = 1900e6 # Hz
 samp_rate = oversamp * 2e6 # Hz
 gain = 31.5 # dB
 duration = num_samps/samp_rate # seconds
-buffer_size = 1024 * oversamp
+buffer_size = 2048
 
-usrp = uhd.usrp.MultiUSRP("serial=E4R22N4UP")
+usrp = uhd.usrp.MultiUSRP("serial=30D2DAA")
 usrp.set_rx_antenna("RX2")
 usrp.set_tx_antenna("TX/RX")
 
@@ -77,6 +77,7 @@ st_args = uhd.usrp.StreamArgs("fc32", "sc16")
 st_args.channels = [0]
 metadata = uhd.types.RXMetadata()
 streamer = usrp.get_rx_stream(st_args)
+#buffer_size = streamer.get_max_num_samps()
 recv_buffer = np.zeros((1, buffer_size), dtype=np.complex64)
 # Start Stream
 stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.start_cont)
@@ -85,14 +86,16 @@ streamer.issue_stream_cmd(stream_cmd)
 
 signal.signal(signal.SIGINT, exit_gracefully)
 
-#pow = []
-signal_max_len = 8192 * oversamp
+
+pow = []
+pow_thresh = 0.1 #Function Generator is 0.1
+signal_max_len = 2**20 * oversamp
 signal_exists = 0
 sig_buffer = np.zeros((signal_max_len), dtype=np.complex64)
 
 while(True):
     streamer.recv(recv_buffer, metadata)
-    if np.max(np.abs(recv_buffer[0])) > 0.2:
+    if np.max(np.abs(recv_buffer[0])) > pow_thresh:
         if signal_exists + buffer_size > signal_max_len:
             print("Signal Too Long")
             exit_gracefully(0,0)    
@@ -100,19 +103,19 @@ while(True):
         signal_exists += buffer_size
     else:
         if signal_exists > 0:
-            print("Signal Detected")
-            plt.clf()
-            plt.plot(np.abs(sig_buffer[0:signal_exists]))
-            plt.show()
-            plot_spectrogram(sig_buffer[0:signal_exists], signal_exists, samp_rate, center_freq, binLen=32)
+            print("Signal Detected of Len " + str(signal_exists))
+            #plt.clf()
+            #plt.plot(np.abs(sig_buffer[0:signal_exists]))
+            #plt.show()
+            plot_spectrogram(sig_buffer[0:signal_exists], signal_exists, samp_rate, center_freq, binLen=2048)
         signal_exists = 0    
-    #pow.append(max(np.abs(recv_buffer[0])))
-    # samples = rx(num_samps)
-    # pow.append(10*np.log10(np.mean(np.abs(samples)**2)))
-    # #plot_spectrogram(samples, num_samps, samp_rate, center_freq)
-    # if(len(pow) % 500 == 0):
-    #    plt.clf()
-    #    plt.plot(pow)
-    #    plt.show()
+    #pow.append(np.max(np.abs(recv_buffer[0])))
+    #samples = rx(num_samps)
+    #pow.append(10*np.log10(np.mean(np.abs(samples)**2)))
+    #plot_spectrogram(samples, num_samps, samp_rate, center_freq)
+    # if(len(pow) % 2000 == 0):
+    #     plt.clf()
+    #     plt.plot(pow)
+    #     plt.show()
 
     #usrp.send_waveform(samples, duration, center_freq, sample_rate, [0], gain)

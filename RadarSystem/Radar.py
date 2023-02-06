@@ -9,7 +9,7 @@ import time
 
 samp_rate = 2e6  #hz
 prf = 100 #Hz
-duty_factor = 0.15 #.05
+duty_factor = 100 #0.15 #.05
 β = 1e6 #400e3; #Pulse Bandwidth
 repetitions = 128
 fc = 1.900e9; #Hz
@@ -55,7 +55,7 @@ t, p = single_pulse(samp_rate, prf, tau, β, pulse_type="Increasing", envelope_t
 
 
 num_samps = len(p) # number of samples received
-gain = 31# dB
+gain = 20# 31# dB
 duration = num_samps/samp_rate # seconds
 
 usrp = uhd.usrp.MultiUSRP("serial=E2R22N0UP")
@@ -102,7 +102,10 @@ plt.plot(np.abs(np.fft.fftshift(np.fft.fft(p[0:int(len(p))]))))
 plt.savefig("FFT.png")
 
 usrp.set_tx_dc_offset(True, 0)
-usrp.send_waveform(p, duration, fc, samp_rate, [0], gain)
-# streamer.send(p, metadata)
+
+while True:
+    usrp.send_waveform(p, duration, fc, samp_rate, [0], gain)
+    time.sleep(1.5)
+    # streamer.send(p, metadata)
 
 
